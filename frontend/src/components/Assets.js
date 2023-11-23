@@ -43,7 +43,7 @@ const Assets = () => {
             <th className="px-4 py-2 border border-slate-400">OS Name</th>
             <th className="px-4 py-2 border border-slate-400">RAM (GB)</th>
             <th className="px-4 py-2 border border-slate-400">
-              Disk Space (GB)
+              Total Disk Size (GB)
             </th>
           </tr>
         </thead>
