@@ -41,9 +41,9 @@ const Assets = () => {
             <th className="px-4 py-2 border border-slate-400">Manufacturer</th>
             <th className="px-4 py-2 border border-slate-400">Model</th>
             <th className="px-4 py-2 border border-slate-400">OS Name</th>
-            <th className="px-4 py-2 border border-slate-400">RAM (GB)</th>
+            <th className="px-4 py-2 border border-slate-400">RAM (in GB)</th>
             <th className="px-4 py-2 border border-slate-400">
-              Total Disk Size (GB)
+              Total Disk Size (in GB)
             </th>
           </tr>
         </thead>
