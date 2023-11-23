@@ -1,15 +1,17 @@
 import { useEffect, useState } from "react";
+import { Skeleton } from "@mui/material";
 import { publicRequest } from "../requestMethod";
-// import io from "socket.io-client";
 
 const Assets = () => {
   const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   // Fetch initial data from the API
   const getDevice = async () => {
     try {
       const res = await publicRequest.get("/devices/");
       setData(res.data);
+      setLoading(false);
     } catch (err) {
       console.log(`Error fetching data due to: ${err}`);
     }
@@ -17,17 +19,6 @@ const Assets = () => {
 
   // Using useEffect to call the API once mounted and set the data
   useEffect(() => {
-    // Establish a WebSocket connection to your backend
-    // const socket = io("http://localhost:5000/api/devices");
-
-    // // Listen for data updates from the WebSocket
-    // socket.on("dataUpdate", (updatedData) => {
-    //   console.log("Data update received:", updatedData);
-
-    //   // Update the data in React state
-    //   setData(updatedData);
-    // });
-
     // Call the function to fetch initial data
     getDevice();
 
@@ -57,28 +48,89 @@ const Assets = () => {
           </tr>
         </thead>
         <tbody>
-          {data.map((item) => (
-            <tr key={item._id} className="odd:bg-slate-200">
-              <td className="px-4 py-2 border border-slate-400">
-                {item.hostName}
-              </td>
-              <td className="px-4 py-2 border border-slate-400">
-                {item.manufacturer}
-              </td>
-              <td className="px-4 py-2 border border-slate-400">
-                {item.model}
-              </td>
-              <td className="px-4 py-2 border border-slate-400">
-                {item.osName}
-              </td>
-              <td className="px-4 py-2 border border-slate-400">
-                {item.totalPhysicalMemoryGB}
-              </td>
-              <td className="px-4 py-2 border border-slate-400">
-                {item.totalDiskSizeGB}
-              </td>
-            </tr>
-          ))}
+          {loading ? (
+            // Render skeleton loader for thead and tbody while data is loading
+            <>
+              <tr>
+                <td colSpan="6">
+                  <Skeleton
+                    variant="rounded"
+                    width="100%"
+                    height={40}
+                    sx={{ bgcolor: "#D8D9DA" }}
+                  />
+                </td>
+              </tr>
+              <tr>
+                <td colSpan="6">
+                  <Skeleton
+                    variant="rounded"
+                    animation="pulse"
+                    width="100%"
+                    height={40}
+                    sx={{ bgcolor: "#9DB2BF" }}
+                  />
+                </td>
+              </tr>
+              <tr>
+                <td colSpan="6">
+                  <Skeleton
+                    variant="rounded"
+                    animation="pulse"
+                    width="100%"
+                    height={40}
+                    sx={{ bgcolor: "#D8D9DA" }}
+                  />
+                </td>
+              </tr>
+              <tr>
+                <td colSpan="6">
+                  <Skeleton
+                    variant="rounded"
+                    animation="pulse"
+                    width="100%"
+                    height={40}
+                    sx={{ bgcolor: "#9DB2BF" }}
+                  />
+                </td>
+              </tr>
+              <tr>
+                <td colSpan="6">
+                  <Skeleton
+                    variant="rounded"
+                    animation="pulse"
+                    width="100%"
+                    height={40}
+                    sx={{ bgcolor: "#D8D9DA" }}
+                  />
+                </td>
+              </tr>
+            </>
+          ) : (
+            // Render actual data when loaded
+            data.map((item) => (
+              <tr key={item._id} className="odd:bg-slate-200">
+                <td className="px-4 py-2 border border-slate-400">
+                  {item.hostName}
+                </td>
+                <td className="px-4 py-2 border border-slate-400">
+                  {item.manufacturer}
+                </td>
+                <td className="px-4 py-2 border border-slate-400">
+                  {item.model}
+                </td>
+                <td className="px-4 py-2 border border-slate-400">
+                  {item.osName}
+                </td>
+                <td className="px-4 py-2 border border-slate-400">
+                  {item.totalPhysicalMemoryGB}
+                </td>
+                <td className="px-4 py-2 border border-slate-400">
+                  {item.totalDiskSizeGB}
+                </td>
+              </tr>
+            ))
+          )}
         </tbody>
       </table>
     </div>
