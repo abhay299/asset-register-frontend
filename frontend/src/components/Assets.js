@@ -29,7 +29,7 @@ const Assets = () => {
     return () => clearInterval(intervalId);
   }, []);
 
-  console.log("DATA =>", data);
+  // console.log("DATA =>", data);
 
   return (
     <div className="">
