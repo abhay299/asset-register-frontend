@@ -33,7 +33,7 @@ const Assets = () => {
 
   return (
     <div className="">
-      <h1 className="bg-blue-200 text-3xl font-bold p-2">Assets</h1>
+      <h1 className="bg-blue-100 text-3xl font-bold p-2">Assets</h1>
       <table className="table-auto w-full border-collapse border">
         <thead className="bg-slate-800 text-white">
           <tr>
